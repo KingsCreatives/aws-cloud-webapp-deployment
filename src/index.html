@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyCloudApp | AWS Cloud Deployment</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: #f5f7fb;
+        color: #222;
+      }
+
+      /* ==========================
+       HEADER
+    ========================== */
+
+      header {
+        background: #1f4db8;
+        color: white;
+        padding: 18px 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      nav ul {
+        display: flex;
+        gap: 35px;
+        list-style: none;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: 0.3s;
+      }
+
+      nav a:hover {
+        opacity: 0.8;
+      }
+
+      /* ==========================
+       HERO
+    ========================== */
+
+      .hero {
+        background: white;
+        text-align: center;
+        padding: 70px 20px;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+        margin-bottom: 15px;
+      }
+
+      .hero p {
+        max-width: 850px;
+        margin: auto;
+        color: #555;
+        line-height: 1.8;
+        font-size: 18px;
+      }
+
+      .hero button {
+        margin-top: 35px;
+        padding: 14px 30px;
+        border: none;
+        border-radius: 8px;
+        background: #1f4db8;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .hero button:hover {
+        background: #16398b;
+      }
+
+      /* ==========================
+       CONTAINER
+    ========================== */
+
+      .container {
+        max-width: 1250px;
+        margin: auto;
+        padding: 60px 20px;
+      }
+
+      /* ==========================
+       FEATURE CARDS
+    ========================== */
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 25px;
+      }
+
+      .card {
+        background: white;
+        padding: 30px;
+        border-radius: 18px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        transition: 0.3s;
+        border-top: 5px solid #1f4db8;
+      }
+
+      .card:hover {
+        transform: translateY(-8px);
+      }
+
+      .card h3 {
+        margin-bottom: 15px;
+        font-size: 26px;
+      }
+
+      .card p {
+        color: #666;
+        line-height: 1.8;
+      }
+
+      .green {
+        border-color: #00c48c;
+      }
+
+      .orange {
+        border-color: #ff8c32;
+      }
+
+      .blue {
+        border-color: #2962ff;
+      }
+
+      .purple {
+        border-color: #7c4dff;
+      }
+
+      /* ==========================
+       ARCHITECTURE
+    ========================== */
+
+      .architecture {
+        margin-top: 80px;
+        background: white;
+        border-radius: 20px;
+        padding: 60px 35px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      }
+
+      .architecture h2 {
+        text-align: center;
+        font-size: 34px;
+        margin-bottom: 12px;
+      }
+
+      .architecture-subtitle {
+        text-align: center;
+        color: #666;
+        margin-bottom: 50px;
+        font-size: 17px;
+      }
+
+      .architecture-flow {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 18px;
+      }
+
+      .flow-item {
+        width: 155px;
+        height: 155px;
+        background: #fafbff;
+        border-radius: 18px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 0.3s;
+        border-top: 4px solid #1f4db8;
+      }
+
+      .flow-item:hover {
+        transform: translateY(-8px);
+      }
+
+      .flow-item .icon {
+        font-size: 34px;
+        margin-bottom: 15px;
+      }
+
+      .flow-item h4 {
+        margin-bottom: 6px;
+        font-size: 18px;
+      }
+
+      .flow-item small {
+        color: #777;
+        text-align: center;
+      }
+
+      .arrow {
+        font-size: 34px;
+        color: #1f4db8;
+        font-weight: bold;
+      }
+
+      /* ==========================
+       BADGES
+    ========================== */
+
+      .badges {
+        margin-top: 60px;
+        text-align: center;
+      }
+
+      .badge {
+        display: inline-block;
+        margin: 8px;
+        padding: 10px 18px;
+        border-radius: 30px;
+        background: #eef3ff;
+        color: #1f4db8;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      /* ==========================
+       FOOTER
+    ========================== */
+
+      footer {
+        margin-top: 80px;
+        background: #1f2937;
+        color: #ddd;
+        text-align: center;
+        padding: 40px 20px;
+      }
+
+      footer h3 {
+        margin-bottom: 10px;
+      }
+
+      footer p {
+        margin-top: 8px;
+      }
+
+      /* ==========================
+       RESPONSIVE
+    ========================== */
+
+      @media (max-width: 992px) {
+        .architecture-flow {
+          flex-direction: column;
+        }
+
+        .arrow {
+          transform: rotate(90deg);
+        }
+      }
+
+      @media (max-width: 768px) {
+        header {
+          flex-direction: column;
+          gap: 15px;
+          padding: 20px;
+        }
+
+        nav ul {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 20px;
+        }
+
+        .hero h1 {
+          font-size: 30px;
+        }
+
+        .hero p {
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">☁️TomCatApp</div>
+
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h1>Welcome to Your AWS Cloud Deployment</h1>
+
+      <p>
+        This application is securely delivered through Amazon CloudFront, routed
+        using an Application Load Balancer, hosted on Amazon EC2, and built
+        following AWS Well-Architected best practices.
+      </p>
+
+      <button
+        onclick="document.getElementById('architecture').scrollIntoView()"
+      >
+        View Architecture
+      </button>
+    </section>
+
+    <div class="container">
+      <div class="cards">
+        <div class="card green">
+          <h3>🔒 HTTPS Secured</h3>
+          <p>
+            SSL/TLS certificates managed by AWS Certificate Manager and
+            delivered securely through CloudFront.
+          </p>
+        </div>
+
+        <div class="card orange">
+          <h3>⚖️ Load Balanced</h3>
+          <p>
+            Application Load Balancer distributes traffic across healthy EC2
+            instances for maximum availability.
+          </p>
+        </div>
+
+        <div class="card blue">
+          <h3>🌍 CDN Enabled</h3>
+          <p>
+            Amazon CloudFront caches content at edge locations worldwide for low
+            latency and faster delivery.
+          </p>
+        </div>
+
+        <div class="card purple">
+          <h3>🚀 CI/CD Ready</h3>
+          <p>
+            GitHub Actions automates testing and deployment for reliable
+            software delivery.
+          </p>
+        </div>
+      </div>
+
+      <!-- UPDATED ARCHITECTURE SECTION -->
+
+      <section class="architecture" id="architecture">
+        <h2>AWS Architecture</h2>
+
+        <p class="architecture-subtitle">
+          Secure, scalable and highly available request flow
+        </p>
+
+        <div class="architecture-flow">
+          <div class="flow-item">
+            <div class="icon">👤</div>
+            <h4>Users</h4>
+            <small>Web Browser</small>
+          </div>
+
+          <div class="arrow">➜</div>
+
+          <div class="flow-item">
+            <div class="icon">🌍</div>
+            <h4>CloudFront</h4>
+            <small>Global CDN</small>
+          </div>
+
+          <div class="arrow">➜</div>
+
+          <div class="flow-item">
+            <div class="icon">⚖️</div>
+            <h4>ALB</h4>
+            <small>Load Balancer</small>
+          </div>
+
+          <div class="arrow">➜</div>
+
+          <div class="flow-item">
+            <div class="icon">🖥️</div>
+            <h4>Amazon EC2</h4>
+            <small>Web Application</small>
+          </div>
+
+          <div class="arrow">➜</div>
+
+          <div class="flow-item">
+            <div class="icon">🪣</div>
+            <h4>Amazon S3</h4>
+            <small>Static Assets</small>
+          </div>
+        </div>
+      </section>
+
+      <div class="badges">
+        <span class="badge">AWS Free Tier</span>
+        <span class="badge">CloudFront</span>
+        <span class="badge">EC2</span>
+        <span class="badge">S3</span>
+        <span class="badge">ALB</span>
+        <span class="badge">GitHub Actions</span>
+        <span class="badge">HTTPS</span>
+      </div>
+    </div>
+
+    <footer>
+      <h3>🐱 Team TomCat</h3>
+
+      <p>End-to-End AWS Cloud Deployment Project</p>
+
+      <p>Built with Amazon Web Services • GitHub • Trello</p>
+    </footer>
+  </body>
+</html>
