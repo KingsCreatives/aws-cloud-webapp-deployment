@@ -1,6 +1,6 @@
 <div align="center">
 
-# ☁️ End-to-End Cloud Solution Design & Deployment
+#  End-to-End Cloud Solution Design & Deployment
 
 ### Team TomCat 🐱
 
@@ -17,7 +17,7 @@ Designing and deploying a secure, scalable, and highly available cloud solution 
 
 ---
 
-## 📖 Project Overview
+## Project Overview
 
 This repository is part of our AWS Cloud Engineering internship, where **Team TomCat** designs, architects, and deploys a production-inspired web application on AWS.
 
@@ -31,9 +31,9 @@ The solution is built to deliver:
 
 ---
 
-## 🎯 Customer Problem
+## Customer Problem
 
-FreshBite Kitchen, a fast-growing food service startup, launched a web application but is running into:
+Ember & Root, a fast-growing food service startup, launched a web application but is running into:
 
 - Slow page load times
 - Inconsistent availability during peak traffic
@@ -45,7 +45,7 @@ Our goal is to redesign their infrastructure on AWS — secure, highly available
 
 ---
 
-## 💡 Proposed Solution
+##  Proposed Solution
 
 Team TomCat is implementing an end-to-end AWS architecture using:
 
@@ -62,7 +62,7 @@ Together, these improve performance, security, collaboration, and deployment aut
 
 ---
 
-## ☁️ Solution Architecture
+##  Solution Architecture
 
 Our architecture provides a **secure, scalable, highly available, and fault-tolerant** infrastructure for FreshBite Kitchen. It spans multiple AWS services to ensure fast content delivery, secure communication, automated deployments, and resilience across Availability Zones.
 
@@ -70,7 +70,7 @@ Our architecture provides a **secure, scalable, highly available, and fault-tole
 
 ### AWS Infrastructure Architecture
 
-![FreshBite AWS Architecture](docs/architecture.png)
+![Ember & Root AWS Architecture](docs/architecture.png)
 
 </div>
 
@@ -78,17 +78,17 @@ Our architecture provides a **secure, scalable, highly available, and fault-tole
 
 | Service | Role |
 |---|---|
-| 🌍 Amazon Route 53 | Routes customer requests to the application |
-| 🔒 AWS Certificate Manager (ACM) | Issues SSL/TLS certificates for HTTPS |
-| ⚡ Amazon CloudFront | Global CDN for low-latency content delivery |
-| 🛡️ AWS WAF | Protects against common web exploits and malicious traffic |
-| ⚖️ Application Load Balancer | Distributes traffic across healthy EC2 instances |
-| 🖥️ Amazon EC2 | Hosts the FreshBite web application |
-| 📦 Amazon S3 | Stores static assets (images, CSS, JS) |
-| 📈 Amazon CloudWatch | Monitors application health, logs, and metrics |
-| 🔐 IAM Roles | Manages permissions securely between services |
-| 🚀 GitHub Actions | Automates deployment from GitHub to AWS |
-| 📋 Trello | Tracks project tasks and team collaboration |
+|  Amazon Route 53 | Routes customer requests to the application |
+|  AWS Certificate Manager (ACM) | Issues SSL/TLS certificates for HTTPS |
+|  Amazon CloudFront | Global CDN for low-latency content delivery |
+|  AWS WAF | Protects against common web exploits and malicious traffic |
+|  Application Load Balancer | Distributes traffic across healthy EC2 instances |
+|  Amazon EC2 | Hosts the FreshBite web application |
+|  Amazon S3 | Stores static assets (images, CSS, JS) |
+|  Amazon CloudWatch | Monitors application health, logs, and metrics |
+|  IAM Roles | Manages permissions securely between services |
+|  GitHub Actions | Automates deployment from GitHub to AWS |
+|  Trello | Tracks project tasks and team collaboration |
 
 ### High Availability
 
@@ -113,7 +113,7 @@ This lets FreshBite Kitchen scale efficiently while maintaining security, availa
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 | Category | Technology |
 |---|---|
@@ -129,9 +129,9 @@ This lets FreshBite Kitchen scale efficiently while maintaining security, availa
 
 ---
 
-## 🗺️ Project Milestones
+##  Project Milestones
 
-### ✅ Milestone 1 — Project Setup & Environment Configuration
+###  Milestone 1 — Project Setup & Environment Configuration
 
 **Objective:** Prepare the cloud environment, development tools, and repositories.
 
@@ -145,7 +145,7 @@ This lets FreshBite Kitchen scale efficiently while maintaining security, availa
 - ACM certificate requested
 - README documentation
 
-### 🚧 Milestone 2 — Web Application Deployment
+###  Milestone 2 — Web Application Deployment
 
 **Objective:** Deploy a secure web application behind an Application Load Balancer.
 
@@ -160,19 +160,19 @@ This lets FreshBite Kitchen scale efficiently while maintaining security, availa
 
 ---
 
-## 📈 Project Progress
+##  Project Progress
 
 | Milestone | Status |
 |---|:---:|
-| Phase 1 – Environment Setup | ✅ Complete |
-| Phase 2 – Web Application | 🚧 In Progress |
-| CloudFront Configuration | ⏳ Pending |
-| HTTPS Configuration | ⏳ Pending |
-| GitHub Actions CI/CD | ⏳ Pending |
+| Phase 1 – Environment Setup |  Complete |
+| Phase 2 – Web Application |  In Progress |
+| CloudFront Configuration | Pending |
+| HTTPS Configuration |  Pending |
+| GitHub Actions CI/CD |  Pending |
 
 ---
 
-## 🌿 Git Workflow
+##  Git Workflow
 
 ```text
 main
@@ -189,7 +189,7 @@ main
 
 ---
 
-## 📂 Repository Structure
+##  Repository Structure
 
 ```text
 .
@@ -203,7 +203,7 @@ main
 
 ---
 
-## 👥 Team TomCat
+##  Team TomCat
 
 | Member | Responsibility |
 |---|---|
@@ -215,7 +215,7 @@ main
 
 ---
 
-## 📸 Screenshots
+##  Screenshots
 
 | Environment | Preview |
 |---|---|
@@ -227,7 +227,7 @@ main
 
 ---
 
-## 📚 Learning Objectives
+##  Learning Objectives
 
 Through this project, the team is building hands-on experience in:
 
@@ -243,7 +243,7 @@ Through this project, the team is building hands-on experience in:
 
 ---
 
-## 📖 References
+##  References
 
 - [Amazon CloudFront Documentation](https://docs.aws.amazon.com/cloudfront)
 - [Application Load Balancer Documentation](https://docs.aws.amazon.com/elasticloadbalancing)
@@ -260,7 +260,7 @@ Through this project, the team is building hands-on experience in:
 
 <div align="center">
 
-## ⭐ Team TomCat
+##  Team TomCat
 
 *"Building secure cloud solutions through collaboration and continuous learning."*
 
