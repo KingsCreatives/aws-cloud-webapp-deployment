@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ember & Root — Seasonal, Wood-Fired, Delivered</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,450;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:      #14110E;
+    --ink-soft: #221C15;
+    --paper:    #F3ECDD;
+    --paper-dim:#E7DEC9;
+    --gold:     #E3A72E;
+    --gold-dim: #B9832055;
+    --ember:    #B33E23;
+    --moss:     #3F4B33;
+    --line:     #3A332844;
+
+    --display: 'Fraunces', serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--body);
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 32px; }
+
+  ::selection{ background:var(--gold); color:var(--ink); }
+
+  /* ---------- utility ---------- */
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:16px; height:1px;
+    background:var(--gold);
+    display:inline-block;
+  }
+
+  /* ---------- nav ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    background:rgba(20,17,14,.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    max-width:1180px; margin:0 auto; padding:18px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .logo{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:20px;
+    letter-spacing:.01em;
+  }
+  .logo span{ color:var(--gold); }
+  .nav-links{ display:flex; gap:34px; font-size:14px; }
+  .nav-links a{
+    opacity:.8; transition:opacity .2s, color .2s;
+    position:relative;
+  }
+  .nav-links a:hover{ opacity:1; color:var(--gold); }
+  .nav-cta{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.06em;
+    border:1px solid var(--gold-dim);
+    padding:9px 18px;
+    border-radius:2px;
+    transition:background .2s, border-color .2s;
+  }
+  .nav-cta:hover{ background:var(--gold); color:var(--ink); border-color:var(--gold); }
+
+  .menu-toggle{ display:none; }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:168px 0 120px;
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:64px;
+    align-items:center;
+    position:relative;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    top:-40%; right:-10%;
+    width:600px; height:600px;
+    background:radial-gradient(circle, var(--ember) 0%, transparent 70%);
+    opacity:.14;
+    pointer-events:none;
+    filter:blur(10px);
+  }
+  .hero h1{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(40px, 5.4vw, 72px);
+    line-height:1.03;
+    letter-spacing:-.01em;
+    margin:22px 0 26px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    font-weight:450;
+    color:var(--gold);
+  }
+  .hero p.lead{
+    font-size:17px;
+    color:var(--paper-dim);
+    max-width:460px;
+    margin-bottom:36px;
+  }
+  .hero-actions{ display:flex; gap:16px; flex-wrap:wrap; }
+
+  .btn{
+    font-family:var(--mono);
+    font-size:13px;
+    letter-spacing:.04em;
+    padding:15px 26px;
+    border-radius:2px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    transition:transform .2s, box-shadow .2s, background .2s, color .2s;
+  }
+  .btn-primary{
+    background:var(--gold);
+    color:var(--ink);
+  }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 10px 24px -8px var(--gold-dim); }
+  .btn-ghost{
+    border:1px solid var(--line);
+    color:var(--paper);
+  }
+  .btn-ghost:hover{ border-color:var(--gold); color:var(--gold); }
+
+  /* ---------- ticket ---------- */
+  .ticket-stage{ display:flex; justify-content:center; }
+  .ticket{
+    width:320px;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--mono);
+    font-size:12.5px;
+    padding:26px 24px 30px;
+    position:relative;
+    box-shadow:0 40px 80px -30px rgba(0,0,0,.65);
+    transform:rotate(2.5deg);
+    animation:print .9s ease-out both;
+    animation-delay:.2s;
+  }
+  .ticket::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:-9px;
+    height:18px;
+    background:
+      radial-gradient(circle at 8px 0, transparent 8px, var(--paper) 8.5px) 0 -9px / 18px 18px repeat-x;
+  }
+  @keyframes print{
+    from{ clip-path:inset(0 0 100% 0); opacity:0; }
+    to{ clip-path:inset(0 0 0 0); opacity:1; }
+  }
+  .ticket-row{ display:flex; justify-content:space-between; margin-bottom:3px; }
+  .ticket-title{
+    text-align:center;
+    font-family:var(--display);
+    font-style:italic;
+    font-size:17px;
+    color:var(--ink);
+    margin:6px 0 14px;
+  }
+  .ticket hr{
+    border:none; border-top:1px dashed #14110E55;
+    margin:12px 0;
+  }
+  .ticket .tag{
+    display:inline-block;
+    background:var(--moss);
+    color:var(--paper);
+    font-size:10px;
+    padding:2px 7px;
+    border-radius:2px;
+    margin-top:10px;
+    letter-spacing:.04em;
+  }
+  .ticket .stamp{
+    position:absolute;
+    top:22px; right:-14px;
+    background:var(--ember);
+    color:var(--paper);
+    font-size:9.5px;
+    letter-spacing:.08em;
+    padding:5px 10px;
+    transform:rotate(8deg);
+    box-shadow:0 6px 16px -6px #00000066;
+  }
+
+  /* ---------- section shells ---------- */
+  section{ padding:110px 0; position:relative; }
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:40px;
+    margin-bottom:56px;
+    flex-wrap:wrap;
+  }
+  .section-head h2{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(30px,3.4vw,44px);
+    margin-top:14px;
+    max-width:560px;
+  }
+  .section-head p{
+    max-width:320px;
+    color:var(--paper-dim);
+    font-size:14.5px;
+  }
+
+  /* ---------- menu ---------- */
+  .menu-list{ display:flex; flex-direction:column; }
+  .menu-item{
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    align-items:baseline;
+    gap:18px;
+    padding:26px 0;
+    border-top:1px solid var(--line);
+  }
+  .menu-list .menu-item:last-child{ border-bottom:1px solid var(--line); }
+  .menu-item .course{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--gold);
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    width:96px;
+  }
+  .menu-item .dish h3{
+    font-family:var(--display);
+    font-weight:450;
+    font-size:22px;
+    margin-bottom:6px;
+  }
+  .menu-item .dish p{
+    color:var(--paper-dim);
+    font-size:13.5px;
+    max-width:520px;
+  }
+  .menu-item .price{
+    font-family:var(--mono);
+    font-size:15px;
+    color:var(--paper);
+    white-space:nowrap;
+  }
+
+  /* ---------- flow ---------- */
+  .flow{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .flow-step{
+    background:var(--ink);
+    padding:40px 34px;
+    position:relative;
+  }
+  .flow-step .verb{
+    font-family:var(--display);
+    font-style:italic;
+    font-size:28px;
+    color:var(--gold);
+    margin-bottom:18px;
+    display:block;
+  }
+  .flow-step h3{
+    font-family:var(--body);
+    font-weight:600;
+    font-size:16px;
+    margin-bottom:10px;
+  }
+  .flow-step p{ color:var(--paper-dim); font-size:13.5px; }
+  .flow-step .mark{
+    position:absolute; top:34px; right:30px;
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--paper-dim);
+    opacity:.5;
+  }
+
+  /* ---------- notes / testimonials rail ---------- */
+  .rail{
+    display:flex;
+    gap:26px;
+    overflow-x:auto;
+    padding:16px 4px 30px;
+    scroll-snap-type:x mandatory;
+  }
+  .rail::-webkit-scrollbar{ height:6px; }
+  .rail::-webkit-scrollbar-thumb{ background:var(--line); border-radius:6px; }
+  .note{
+    scroll-snap-align:start;
+    flex:0 0 300px;
+    background:var(--paper);
+    color:var(--ink);
+    padding:26px 24px;
+    font-family:var(--mono);
+    font-size:12.5px;
+    box-shadow:0 20px 40px -20px rgba(0,0,0,.5);
+  }
+  .note:nth-child(odd){ transform:rotate(-1.4deg); }
+  .note:nth-child(even){ transform:rotate(1.2deg); }
+  .note p.quote{
+    font-family:var(--display);
+    font-style:italic;
+    font-size:16.5px;
+    line-height:1.4;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .note .who{ color:var(--moss); letter-spacing:.03em; }
+
+  /* ---------- reserve cta ---------- */
+  .reserve{
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:2px;
+    padding:72px 60px;
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:40px;
+    align-items:center;
+  }
+  .reserve h2{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(28px,3.6vw,42px);
+    line-height:1.08;
+  }
+  .reserve .btn-primary{ margin-top:26px; }
+  .reserve-details{
+    font-family:var(--mono);
+    font-size:13px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    border-left:1px solid #14110E33;
+    padding-left:34px;
+  }
+  .reserve-details .k{ color:var(--ember); letter-spacing:.06em; text-transform:uppercase; font-size:11px; }
+
+  /* ---------- footer ---------- */
+  footer{
+    padding:50px 0 40px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--paper-dim);
+  }
+  footer .flinks{ display:flex; gap:24px; }
+  footer .flinks a:hover{ color:var(--gold); }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 880px){
+    .nav-links{ display:none; }
+    .hero{ grid-template-columns:1fr; padding-top:150px; text-align:left; }
+    .hero::before{ display:none; }
+    .ticket-stage{ margin-top:20px; }
+    .reserve{ grid-template-columns:1fr; padding:44px 28px; }
+    .reserve-details{ border-left:none; border-top:1px solid #14110E33; padding-left:0; padding-top:24px; }
+    .flow{ grid-template-columns:1fr; }
+    .menu-item{ grid-template-columns:1fr; }
+    .menu-item .price{ order:3; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .ticket{ animation:none; }
+  }
+
+  :focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">EMBER <span>&amp;</span> ROOT</div>
+    <div class="nav-links">
+      <a href="#menu">Tonight's Menu</a>
+      <a href="#flow">How It Works</a>
+      <a href="#notes">Notes</a>
+    </div>
+    <a href="#reserve" class="nav-cta">RESERVE A TABLE</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero wrap" style="padding-top:168px;">
+    <div>
+      <div class="eyebrow">SEASONAL · WOOD-FIRED · ACCRA</div>
+      <h1>Dinner, fired<br>by <em>the season.</em></h1>
+      <p class="lead">Ember &amp; Root cooks one changing menu a week over live fire — sourced from growers we know, plated for the table, delivered still warm. No freezer. No shortcuts.</p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn btn-primary">See Tonight's Menu →</a>
+        <a href="#reserve" class="btn btn-ghost">Book a Table</a>
+      </div>
+    </div>
+
+    <div class="ticket-stage">
+      <div class="ticket">
+        <div class="stamp">FIRED</div>
+        <div class="ticket-row"><span>ORDER #0417</span><span>19:42</span></div>
+        <div class="ticket-row"><span>TABLE 6</span><span>SEATS 2</span></div>
+        <hr>
+        <div class="ticket-title">Tonight's Fire</div>
+        <div class="ticket-row"><span>1× Charred Corn, Miso Butter</span></div>
+        <div class="ticket-row"><span>1× Ember Trout, Citrus Ash</span></div>
+        <div class="ticket-row"><span>2× Smoked Sweet Plantain</span></div>
+        <hr>
+        <div class="ticket-row"><span>COURSE FIRE</span><span>18–19 MIN</span></div>
+        <span class="tag">CHEF'S NOTE: LIGHT ON SALT</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu" class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">THIS WEEK'S FIRE</div>
+        <h2>One menu. Changed every Sunday, built around what's ripe.</h2>
+      </div>
+      <p>No printed leather-bound book — just what came in from the growers this week, cooked simply and served hot.</p>
+    </div>
+
+    <div class="menu-list">
+      <div class="menu-item">
+        <span class="course">To Start</span>
+        <div class="dish">
+          <h3>Charred Corn, Miso Butter</h3>
+          <p>Sweet corn off the cob, blistered over embers, finished with brown butter and miso.</p>
+        </div>
+        <span class="price">GHS 45</span>
+      </div>
+      <div class="menu-item">
+        <span class="course">Fire</span>
+        <div class="dish">
+          <h3>Ember Trout, Citrus Ash</h3>
+          <p>Whole trout, salt-crusted and smoked over wood, dressed with charred citrus and herb oil.</p>
+        </div>
+        <span class="price">GHS 120</span>
+      </div>
+      <div class="menu-item">
+        <span class="course">Fire</span>
+        <div class="dish">
+          <h3>Slow Goat Shoulder, Root Mash</h3>
+          <p>Twelve hours over low coals, pulled at the table, served with root vegetable mash and pan jus.</p>
+        </div>
+        <span class="price">GHS 145</span>
+      </div>
+      <div class="menu-item">
+        <span class="course">Sides</span>
+        <div class="dish">
+          <h3>Smoked Sweet Plantain</h3>
+          <p>Plantain cooked slow at the edge of the fire until the sugars catch.</p>
+        </div>
+        <span class="price">GHS 30</span>
+      </div>
+      <div class="menu-item">
+        <span class="course">To Finish</span>
+        <div class="dish">
+          <h3>Burnt Honey Custard</h3>
+          <p>Set custard topped with honey caramelised until it just turns bitter.</p>
+        </div>
+        <span class="price">GHS 40</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLOW -->
+  <section id="flow" class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">HOW A NIGHT WORKS</div>
+        <h2>Three moves, from ember to table.</h2>
+      </div>
+      <p>Whether you're dining in or having it sent over — the kitchen runs the same way, every time.</p>
+    </div>
+
+    <div class="flow">
+      <div class="flow-step">
+        <span class="mark">ORDER</span>
+        <span class="verb">Order</span>
+        <h3>Pick tonight's fire</h3>
+        <p>Reserve a table or place a delivery order before 5pm — the menu locks once the fire's lit.</p>
+      </div>
+      <div class="flow-step">
+        <span class="mark">FIRE</span>
+        <span class="verb">Fire</span>
+        <h3>Cooked over live coals</h3>
+        <p>Everything is cooked to order over wood, no batching, no reheating — your ticket goes up when you sit down.</p>
+      </div>
+      <div class="flow-step">
+        <span class="mark">SERVE</span>
+        <span class="verb">Serve</span>
+        <h3>Plated hot, or sent warm</h3>
+        <p>Dine-in plates leave the pass straight to your table. Delivery goes out sealed, in insulated carriers, within 20 minutes of firing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTES / TESTIMONIALS -->
+  <section id="notes" class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">FROM THE TABLES</div>
+        <h2>Notes left on the way out.</h2>
+      </div>
+      <p>We keep the tickets. Some of them stuck around.</p>
+    </div>
+
+    <div class="rail">
+      <div class="note">
+        <p class="quote">"The trout came out smelling like the fire was still in the room. Best thing I've eaten this year."</p>
+        <div class="who">— AKOSUA T., TABLE 4</div>
+      </div>
+      <div class="note">
+        <p class="quote">"Ordered delivery on a whim. It arrived hot enough that I checked twice if it had just left the pass."</p>
+        <div class="who">— DELIVERY, ORDER #0388</div>
+      </div>
+      <div class="note">
+        <p class="quote">"No menu to flip through, no decisions to overthink. You just eat what's good that week."</p>
+        <div class="who">— KOFI M., TABLE 2</div>
+      </div>
+      <div class="note">
+        <p class="quote">"Brought my whole team for a Friday dinner. The goat shoulder alone was worth the trip."</p>
+        <div class="who">— NANA A., TABLE 9</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESERVE -->
+  <section id="reserve" class="wrap">
+    <div class="reserve">
+      <div>
+        <div class="eyebrow" style="color:var(--ember);">RESERVE A TABLE</div>
+        <h2>The fire's lit five nights a week. Come sit by it.</h2>
+        <a href="#" class="btn btn-primary">Book Your Table →</a>
+      </div>
+      <div class="reserve-details">
+        <div>
+          <div class="k">Hours</div>
+          Tue – Sat, 5pm – 11pm
+        </div>
+        <div>
+          <div class="k">Location</div>
+          12 Kotoka Ave, Airport Residential, Accra
+        </div>
+        <div>
+          <div class="k">Delivery</div>
+          5pm – 9:30pm, within 6km of the kitchen
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <div>© 2026 Ember &amp; Root. Cooked over wood, always.</div>
+  <div class="flinks">
+    <a href="#menu">Menu</a>
+    <a href="#flow">Process</a>
+    <a href="#reserve">Reserve</a>
+  </div>
+</footer>
+
+</body>
+</html>
