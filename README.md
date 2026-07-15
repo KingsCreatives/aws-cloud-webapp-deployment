@@ -207,13 +207,12 @@ main
 
 | Member | Responsibility |
 |---|---|
-| _Name 1_ | Project Lead |
-| _Name 2_ | Cloud Infrastructure |
-| _Name 3_ | Networking & Security |
-| _Name 4_ | Web Application |
-| _Name 5_ | Documentation & CI/CD |
+| David Quayartey | Team Lead / Coordinator |
+| Emmanuel Akatse | AWS Admin |
+| Samuel Kinsford Amoah | GitHub Manager |
+| Peter Nartey | Infrastructure Engineer |
+| Nunoo Annah Frimpomaah | Security & Docs Lead |
 
-> Replace the placeholders above with your teammates' actual names.
 
 ---
 
