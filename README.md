@@ -70,7 +70,8 @@ Our architecture provides a **secure, scalable, highly available, and fault-tole
 
 ### AWS Infrastructure Architecture
 
-![Ember & Root AWS Architecture](docs/architecture.png)
+![Ember & Root AWS Architecture]<img width="1602" height="962" alt="project 1 Tomcat drawio" src="https://github.com/user-attachments/assets/f20b4335-30ac-484a-9832-95613e168c12" />
+
 
 </div>
 
@@ -78,7 +79,6 @@ Our architecture provides a **secure, scalable, highly available, and fault-tole
 
 | Service | Role |
 |---|---|
-|  Amazon Route 53 | Routes customer requests to the application |
 |  AWS Certificate Manager (ACM) | Issues SSL/TLS certificates for HTTPS |
 |  Amazon CloudFront | Global CDN for low-latency content delivery |
 |  AWS WAF | Protects against common web exploits and malicious traffic |
