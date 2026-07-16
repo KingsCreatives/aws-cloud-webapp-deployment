@@ -6,13 +6,6 @@
 
 **A secure, scalable, and highly available AWS cloud architecture engineered for EMBER & ROOT Kitchen**
 
-![AWS](https://img.shields.io/badge/AWS-Free%20Tier-FF9900?logo=amazonaws&logoColor=white)
-![CloudFront](https://img.shields.io/badge/Amazon_CloudFront-232F3E?logo=amazonaws&logoColor=white)
-![EC2](https://img.shields.io/badge/Amazon_EC2-FF9900?logo=amazonec2&logoColor=white)
-![S3](https://img.shields.io/badge/Amazon_S3-569A31?logo=amazons3&logoColor=white)
-![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)
-![Trello](https://img.shields.io/badge/Trello-0052CC?logo=trello&logoColor=white)
-
 </div>
 
 ---
@@ -176,13 +169,13 @@ End Users
 
 | Component | Status |
 |---|:---:|
-| Environment Setup | ✅ Completed |
-| Application Deployment | ✅ Completed |
-| Application Load Balancer | ✅ Completed |
-| Amazon S3 Integration | ✅ Completed |
-| Amazon CloudFront | ✅ Completed |
-| Security Hardening | 🔄 In Progress |
-| CI/CD Pipeline | 🔄 In Progress |
+| Environment Setup | Completed |
+| Application Deployment | Completed |
+| Application Load Balancer | Completed |
+| Amazon S3 Integration | Completed |
+| Amazon CloudFront | Completed |
+| Security Hardening | In Progress |
+| CI/CD Pipeline | In Progress |
 
 ---
 
@@ -246,6 +239,7 @@ Feature branches are merged into `develop` for integration testing before promot
 | Emmanuel Akatse | AWS Administrator |
 | Peter Nartey | Infrastructure Engineer |
 | Nunoo Annah Frimpomaah | Security & Documentation |
+| Salu Alhassan | CloudFront Specialist |
 
 ---
 
