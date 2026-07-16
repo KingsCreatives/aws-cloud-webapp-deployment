@@ -207,6 +207,12 @@ main
 
 | Member | Responsibility |
 |---|---|
+| David Quayartey | Team Lead / Coordinator |
+| Emmanuel Akatse | AWS Admin |
+| Samuel Kinsford Amoah | GitHub Manager |
+| Peter Nartey | Infrastructure Engineer |
+| Nunoo Annah Frimpomaah | Security & Docs Lead |
+
 | Nunoo Annah Frimpomaah | Security & Docs Lead |
 | Peter Nartey | Infrastructure Engineer |
 | Emmanuel Akatse | AWS Admin |
