@@ -246,6 +246,7 @@ Feature branches are merged into `develop` for integration testing before promot
 | Emmanuel Akatse | AWS Administrator |
 | Peter Nartey | Infrastructure Engineer |
 | Nunoo Annah Frimpomaah | Security & Documentation |
+| Salu Alhassan | CloudFront Specialist |
 
 ---
 
