@@ -78,7 +78,6 @@ Our architecture provides a **secure, scalable, highly available, and fault-tole
 
 | Service | Role |
 |---|---|
-|  Amazon Route 53 | Routes customer requests to the application |
 |  AWS Certificate Manager (ACM) | Issues SSL/TLS certificates for HTTPS |
 |  Amazon CloudFront | Global CDN for low-latency content delivery |
 |  AWS WAF | Protects against common web exploits and malicious traffic |
