@@ -118,6 +118,58 @@ End Users
 
 ---
 
+## CI/CD Pipeline Documentation
+
+### Overview
+
+The CI/CD pipeline automates the deployment of application code from GitHub to Amazon EC2, eliminating manual deployment steps and reducing the risk of human error. The pipeline is triggered automatically whenever code is pushed to the `main` branch.
+
+### GitHub Actions Workflow
+
+The pipeline is implemented using **GitHub Actions** and is defined in `.github/workflows/deploy.yml`. The workflow consists of the following steps:
+
+| Step | Description |
+|------|-------------|
+| **Checkout code** | Pulls the latest code from the GitHub repository |
+| **Set up SSH key** | Configures SSH authentication using the stored private key |
+| **Deploy to EC2** | Establishes an SSH connection to the EC2 instance and executes the deployment script |
+
+### GitHub Secrets
+
+The following repository secrets are configured for secure authentication:
+
+| Secret Name | Purpose |
+|-------------|---------|
+| `EC2_PRIVATE_KEY` | Private SSH key for authenticating with the EC2 instance |
+| `EC2_PUBLIC_IP` | Public IP address of the EC2 instance |
+
+### Deployment Script
+
+The deployment script (`/home/ec2-user/deploy.sh`) runs on the EC2 instance and performs the following actions:
+
+```bash
+#!/bin/bash
+cd /var/www/html
+git pull origin main
+sudo systemctl restart nginx
+echo "Deployment completed at $(date)" >> /home/ec2-user/deploy.log
+```
+
+### Workflow Triggers
+
+- **Automatic:** Push to `main` branch
+- **Manual:** Can be triggered manually via the GitHub Actions interface
+
+### Rollback Procedure
+
+In the event of a failed deployment, the previous version of the application can be restored by:
+
+1. Reverting the commit on the `main` branch
+2. Pushing the revert, which triggers a new deployment
+3. The previous version is automatically redeployed
+
+---
+
 ## Technology Stack
 
 | Category | Technology |
@@ -163,6 +215,12 @@ End Users
 - Configure and tune caching policies
 - Establish CloudWatch monitoring and alerting
 
+### Milestone 4 — CI/CD, Monitoring & Cost Management
+- GitHub Actions CI/CD pipeline implementation
+- CloudWatch monitoring and alerting
+- AWS Budgets configuration
+- Project documentation and handoff
+
 ---
 
 ## Project Status
@@ -175,7 +233,7 @@ End Users
 | Amazon S3 Integration | Completed |
 | Amazon CloudFront | Completed |
 | Security Hardening | In Progress |
-| CI/CD Pipeline | In Progress |
+| CI/CD Pipeline | Completed |
 
 ---
 
@@ -223,6 +281,9 @@ Feature branches are merged into `develop` for integration testing before promot
 │   └── architecture.png
 ├── screenshots/
 ├── src/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml
 ├── index.html
 ├── README.md
 └── .gitignore
