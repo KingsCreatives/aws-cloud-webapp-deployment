@@ -13,7 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 1.7 – Set up SSH key
       - name: Set up SSH key
         run: |
           mkdir -p ~/.ssh
@@ -23,4 +22,8 @@ jobs:
       - name: Deploy to EC2
         run: |
           ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_PUBLIC_IP }} \
-            "sudo bash /home/ec2-user/deploy.sh"
+            "cd /var/www/html && \
+             sudo git pull origin main && \
+             sudo cp -r src/* . 2>/dev/null || true && \
+             sudo rm -rf src && \
+             sudo systemctl restart httpd"
