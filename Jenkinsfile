@@ -17,6 +17,8 @@ pipeline {
                 sh """
                     cd ${WEB_DIR}
                     sudo git pull origin main
+                    sudo cp -r src/* . 2>/dev/null || true
+                    sudo rm -rf src
                     sudo systemctl restart httpd
                 """
             }
@@ -25,10 +27,10 @@ pipeline {
 
     post {
         success {
-            echo 'Deployment successful!'
+            echo '✅ Deployment successful!'
         }
         failure {
-            echo 'Deployment failed. Check logs.'
+            echo '❌ Deployment failed. Check logs.'
         }
     }
 }
