@@ -60,7 +60,8 @@ Together, these services form a resilient, defense-in-depth architecture spannin
 
 ### AWS Architecture Diagram
 
-![FreshBite AWS Architecture](docs/architecture.png)
+<img width="1602" height="962" alt="project 1 Tomcat drawio" src="https://github.com/user-attachments/assets/4494c7c6-f03e-4da8-86a0-e0af60a7743c" />
+
 
 </div>
 
